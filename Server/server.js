@@ -45,6 +45,10 @@ app.use('/api/messages' , messageRouter)
 
 await connectDB()
 
+if(process.env.NODE_ENV !== "production") {
+    const port = process.env.PORT || 5000
+    server.listen(port , (req, res)=> console.log("Server is live : " + port))
+}
 
-const port = process.env.PORT || 5000
-server.listen(port , (req, res)=> console.log("Server is live : " + port))
+
+export default server
